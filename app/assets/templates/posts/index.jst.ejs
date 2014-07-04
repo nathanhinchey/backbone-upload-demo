@@ -1,0 +1,17 @@
+<h1>Posts</h1>
+
+<a href="#new">Add Post</a>
+
+<ul>
+  <% posts.each(function(post){ %>
+  <li>
+
+    <strong><%= post.get("title") %></strong>
+
+    <figure>
+      <img src="<%= post.get("image_url") %>" width="100">
+    </figure>
+
+  </li>
+  <% }) %>
+</ul>
