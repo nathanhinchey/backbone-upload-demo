@@ -27,14 +27,22 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem "backbone-on-rails"
-gem "paperclip"
 gem "ejs"
+
+# gem "figaro"
+
+# gem "paperclip"
+# gem "aws-sdk"
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
   gem 'quiet_assets'
+end
+
+group :production do
+  gem "rails_12factor"
 end
 
 # Use ActiveModel has_secure_password

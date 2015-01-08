@@ -35,3 +35,28 @@ Use a Jbuilder template when generating JSON from Rails. When providing JSON tha
 This way if your Paperclip default_url for a missing image kicks in, it will correctly find it in your Rails Asset Pipeline setup. It may seem to work without in your development environment, but big chances are that this will bite you in production.
 
 `has_attached_file :image, default_url: "missing.png"`
+
+
+# Demo Steps
+- Show off base app
+- Mention wrap params setup
+
+- Show paperclip docs
+- Add paperclip gem
+- Add paperclip migration for :image
+- Add paperclip model settings
+- Test paperclip in console with File.read
+- Show where file ends up
+
+- Add file input to backbone form
+- Show filereader docs
+- Add listeners
+- Show preview
+- Set model property with image
+- Remove model property on save
+
+- Introduce S3
+- Create Bucket
+- Create IAM Permissions User
+- Setup Paperclip
+- Figaro
