@@ -29,10 +29,10 @@ gem 'spring',        group: :development
 gem "backbone-on-rails"
 gem "ejs"
 
-# gem "figaro"
+gem "figaro"
 
-# gem "paperclip"
-# gem "aws-sdk"
+gem "paperclip"
+gem "aws-sdk"
 
 group :development do
   gem 'better_errors'

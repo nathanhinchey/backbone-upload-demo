@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :api, format: :json do
-    resources :posts, only: [:index, :create]
+    resources :posts, only: [:index, :create, :show]
   end
 
   root to: "root#index"

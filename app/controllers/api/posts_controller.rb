@@ -5,6 +5,11 @@ class Api::PostsController < ApplicationController
     render :index
   end
 
+  def show
+    @post = Post.find(params[:id])
+    render :show
+  end
+
   def create
     @post = Post.create!(post_params)
     render :show
@@ -13,7 +18,7 @@ class Api::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title)
+    params.require(:post).permit(:title, :image)
   end
 
 end

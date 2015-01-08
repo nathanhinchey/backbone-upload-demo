@@ -45,7 +45,7 @@ This way if your Paperclip default_url for a missing image kicks in, it will cor
 - Add paperclip gem
 - Add paperclip migration for :image
 - Add paperclip model settings
-- Test paperclip in console with File.read
+- Test paperclip in console with File.open
 - Show where file ends up
 
 - Add file input to backbone form
