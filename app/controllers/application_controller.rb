@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  wrap_parameters false
+
+  # You may choose to turn off Params Wrapper altogether
+  # wrap_parameters false
 end
