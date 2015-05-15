@@ -2,6 +2,16 @@
 
 This demo shows how to upload images using Backbone. It also looks at how Backbone and Rails communicate over the wire.
 
+## Links
+
+- [Paperclip](https://github.com/thoughtbot/paperclip#paperclip)
+- [Figaro](https://github.com/laserlemon/figaro#why-does-figaro-exist)
+- [AWS](http://aws.amazon.com/)
+- [ParamsWrapper](http://api.rubyonrails.org/classes/ActionController/ParamsWrapper.html)
+- [Backbone toJSON](http://backbonejs.org/docs/backbone.html#section-41)
+- [FileReader](https://developer.mozilla.org/en-US/docs/Web/API/FileReader)
+- [readAsDataUrl](https://developer.mozilla.org/en-US/docs/Web/API/FileReader.readAsDataURL)
+
 ## Params Wrapper
 
 First we look at how Backbone serializes a model and submits the data over the wire. See how it is a shallow object. In Rails we are used to having our params namespaced under a model's name.
@@ -37,26 +47,54 @@ This way if your Paperclip default_url for a missing image kicks in, it will cor
 `has_attached_file :image, default_url: "missing.png"`
 
 
-# Demo Steps
-- Show off base app
-- Mention wrap params setup
+## AWS Paperclip Config
 
-- Show paperclip docs
-- Add paperclip gem
-- Add paperclip migration for :image
-- Add paperclip model settings
-- Test paperclip in console with File.open
-- Show where file ends up
+```ruby
+# config/application.rb
 
-- Add file input to backbone form
-- Show filereader docs
-- Add listeners
-- Show preview
-- Set model property with image
-- Remove model property on save
+config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => ENV["s3_bucket"],
+    :access_key_id => ENV["s3_access_key_id"],
+    :secret_access_key => ENV["s3_secret_access_key"]
+  }
+}
+```
 
-- Introduce S3
-- Create Bucket
-- Create IAM Permissions User
-- Setup Paperclip
-- Figaro
+Store your API keys securely with Figaro.
+
+```ruby
+# config/application.yml
+development:
+  s3_bucket: "XXXX-BUCKET-NAME-DEV"
+
+production:
+  s3_bucket: "XXXX-BUCKET-NAME-PRO"
+
+s3_access_key_id: "XXXX"
+s3_secret_access_key: "XXXX"
+```
+
+Make sure to use separate buckets for development and production. You may want to use the following security policy for your Amazon AWS IAM user.
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1420751757000",
+      "Effect": "Allow",
+      "Action": [
+        "s3:*"
+      ],
+      "Resource": [
+        "arn:aws:s3:::XXXX-BUCKET-NAME-DEV",
+        "arn:aws:s3:::XXXX-BUCKET-NAME-DEV/*",
+        "arn:aws:s3:::XXXX-BUCKET-NAME-PRO",
+        "arn:aws:s3:::XXXX-BUCKET-NAME-PRO/*"
+      ]
+    }
+  ]
+}
+```
